@@ -48,7 +48,7 @@ class ILoveCk101Comic {
 				def folder = makeDir( this.comicTitle.toString(), pageTitle)
 				def image = this.parserImageUrl(imageUrl[i])
 				if (image != null && image.length() != 0) {
-					new File(folder, "${i}.png").withOutputStream { out ->
+					new File(folder, "${i.toString().padLeft(3,'0')}.png").withOutputStream { out ->
 		                    out << new URL(image).openStream()
 		            }
 				}
@@ -145,17 +145,6 @@ class ILoveCk101Comic {
 
 	static main(args) {
 		def comic = new ILoveCk101Comic()
-		// def url = "http://m.comic.ck101.com/vols/8402121/1"
-		// println comic.parserImageUrl(url)
-		 
-		// def url = "http://m.comic.ck101.com/comic/16687"
-		// println comic.parserVolumeUrl(url)
-		// def url = "http://m.comic.ck101.com//vols/8402128/1"
-		// println comic.parserPageUrl(url)
-
-
-		// def url = "http://m.comic.ck101.com/comic/16687"
-		// println comic.run()
 		if (args){
 		    String url = args[0]
 		    comic.run(url)
